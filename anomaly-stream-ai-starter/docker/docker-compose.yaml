@@ -1,0 +1,13 @@
+
+# Phase 2 (optional): enable Redpanda/Kafka + services
+version: "3.9"
+services:
+  redpanda:
+    image: docker.redpanda.com/redpanda/redpanda:latest
+    command: redpanda start --overprovisioned --smp 1 --memory 1G --reserve-memory 0M --node-id 0 --check=false
+    ports: ["9092:9092","9644:9644"]
+    stdin_open: true
+    tty: true
+
+  # You would add api/processor/dashboard services here and wire them to Kafka.
+  # For v1 Lite Mode, run via Makefile on your host.
